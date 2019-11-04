@@ -30,7 +30,7 @@ const [tigerScore, setTigerScore] =useState(0);
           <div className="timer">00:03</div>
           <div className="away">
             <h2 className="away__name">Tigers</h2>
-            <div className="away__score">32</div>
+            <div className="away__score">{tigerScore}</div>
           </div>
         </div>
         <BottomRow />
@@ -38,7 +38,7 @@ const [tigerScore, setTigerScore] =useState(0);
       <section className="buttons">
         <div className="homeButtons">
           {/* TODO STEP 4 - Now we need to attach our state setter functions to click listeners. */}
-          <button className="homeButtons__touchdown">Home Touchdown</button>
+          <button className="homeButtons__touchdown" onClick={() => setLionScore(lionScore +1)}>Home Touchdown</button>
           <button className="homeButtons__fieldGoal">Home Field Goal</button>
         </div>
         <div className="awayButtons">
