@@ -1,5 +1,5 @@
 //TODO: STEP 1 - Import the useState hook.
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "./App.css";
 import BottomRow from "./BottomRow";
 
@@ -11,9 +11,15 @@ const [lionScore, setLionScore] = useState(0);
 
 const [tigerScore, setTigerScore] =useState(0);
 
-// const [TigersTouchdown, TigersGoal] = useState({
-//   away: 0
-// })
+const [reset, setReset] = useState(0);
+
+useEffect(() => {
+  setTimeout(() => {
+    setReset(0);
+  }, 4000)
+
+  console.log('you resetted');
+})
 
 
   return (
@@ -45,6 +51,14 @@ const [tigerScore, setTigerScore] =useState(0);
           <button className="awayButtons__touchdown" onClick={() => setTigerScore(tigerScore +6)}>Away Touchdown</button>
           <button className="awayButtons__fieldGoal" onClick={() => setTigerScore(tigerScore +3)}>Away Field Goal</button>
         </div>
+
+    {/* //attempting reset */}
+        <div className="awayButtons">
+        <button className="awayButtons__touchdown" onClick={() => setTigerScore(reset)}>Reset Tiger's Scoreboard</button>
+         </div>
+         <div className="awayButtons">
+        <button className="awayButtons__touchdown" onClick={() => setLionScore(reset)}>Reset Lion's Scoreboard</button>
+         </div>
       </section>
     </div>
   );
