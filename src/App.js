@@ -2,6 +2,8 @@
 import React, {useState, useEffect} from "react";
 import "./App.css";
 import BottomRow from "./BottomRow";
+import styled from 'styled-components'
+
 
 
 function App() {
@@ -13,6 +15,7 @@ const [tigerScore, setTigerScore] =useState(0);
 
 const [reset, setReset] = useState(0);
 
+//side effect- useEffect hook 
 useEffect(() => {
   setTimeout(() => {
     setReset(0);
