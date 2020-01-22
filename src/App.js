@@ -1,8 +1,20 @@
 //TODO: STEP 1 - Import the useState hook.
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "./App.css";
 import BottomRow from "./BottomRow";
+import styled, { keyframes } from 'styled-components'
 
+
+
+const animationName = keyframes`
+  0% { color: transparent; }
+  100% { color: pink; }
+`
+
+
+const Button = styled.button`
+animation: ${animationName} 3s ease infinite alternate;
+`
 
 function App() {
   //TODO: STEP 2 - Establish your applictaion's state with some useState hooks.  You'll need one for the home score and another for the away score.
@@ -11,9 +23,16 @@ const [lionScore, setLionScore] = useState(0);
 
 const [tigerScore, setTigerScore] =useState(0);
 
-// const [TigersTouchdown, TigersGoal] = useState({
-//   away: 0
-// })
+const [reset, setReset] = useState(0);
+
+//side effect- useEffect hook 
+useEffect(() => {
+  setTimeout(() => {
+    setReset(0);
+  }, 4000)
+
+  console.log('you resetted');
+})
 
 
   return (
@@ -38,16 +57,27 @@ const [tigerScore, setTigerScore] =useState(0);
       <section className="buttons">
         <div className="homeButtons">
           {/* TODO STEP 4 - Now we need to attach our state setter functions to click listeners. */}
-          <button className="homeButtons__touchdown" onClick={() => setLionScore(lionScore +6)}>Home Touchdown</button>
-          <button className="homeButtons__fieldGoal" onClick={() => setLionScore(lionScore + 3)}>Home Field Goal</button>
+          <Button className="homeButtons__touchdown" onClick={() => setLionScore(lionScore +6)}>Home Touchdown</Button>
+          <Button className="homeButtons__fieldGoal" onClick={() => setLionScore(lionScore + 3)}>Home Field Goal</Button>
         </div>
         <div className="awayButtons">
-          <button className="awayButtons__touchdown" onClick={() => setTigerScore(tigerScore +6)}>Away Touchdown</button>
-          <button className="awayButtons__fieldGoal" onClick={() => setTigerScore(tigerScore +3)}>Away Field Goal</button>
+          <Button className="awayButtons__touchdown" onClick={() => setTigerScore(tigerScore +6)}>Away Touchdown</Button>
+          <Button className="awayButtons__fieldGoal" onClick={() => setTigerScore(tigerScore +3)}>Away Field Goal</Button>
         </div>
+
+    {/* //attempting reset */}
+        <div className="awayButtons">
+        <Button className="awayButtons__touchdown" onClick={() => setTigerScore(reset)}>Reset Tiger's Scoreboard</Button>
+         </div>
+         <div className="awayButtons">
+        <Button className="awayButtons__touchdown" onClick={() => setLionScore(reset)}>Reset Lion's Scoreboard</Button>
+         </div>
       </section>
     </div>
   );
 }
 
 export default App;
+
+//styled components
+
